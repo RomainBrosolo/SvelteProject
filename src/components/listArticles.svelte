@@ -3,15 +3,19 @@
   href="https://fonts.googleapis.com/icon?family=Material+Icons"
 />
 <script>
+	import ModalAdd from '../views/modalAdd.svelte';
+    import ModalEdit from '../views/modalEdit.svelte';
     import IconButton from '@smui/icon-button';
+    
     let listArticles = [];
     let categories = [];
     let isNew = true;
     let updatedArticle = {};
+    let modalIsOpen = false;
     let inputSearch = '';
     let listSearch = [];
     let article = {
-        id: undefined,
+        id: undefined,  
         title: '',
         description: '',
         category: '',
@@ -23,10 +27,13 @@
     if(localStorage.getItem("articles")){
         listArticles = JSON.parse(localStorage.getItem("articles"));
         categories = JSON.parse(localStorage.getItem("categories"));
+        modalIsOpen = JSON.parse(localStorage.getItem("modalIsOpen"));
+
     }
     
     $: localStorage.setItem("articles", JSON.stringify(listArticles))
     $: localStorage.setItem("categories", JSON.stringify(categories))
+    $: localStorage.setItem("modalIsOpen", JSON.stringify(modalIsOpen))
     
     const createArticle = () => {
         if(!article.title.trim()) {
@@ -96,13 +103,14 @@
     <p>Crée le {item.created}</p>
     <p>{item.updated != undefined ? 'Dernière Modification le ' + item.updated : ''}</p>
     <IconButton class="material-icons" on:click={deleteArticle(item.id)}>delete</IconButton>
-    <IconButton class="material-icons" on:click={() => {isNew = false; updatedArticle=item}} >edit</IconButton>
+    <IconButton class="material-icons" on:click={() => {isNew = false; modalIsOpen = true;updatedArticle=item}} >edit</IconButton>
 </div>
 {/each}
 </div>
 
 {#if isNew == true}
 <h1>Créer un article :</h1>
+<button on:click={() => {modalIsOpen = true;}}>Créer un article</button>
 <form on:submit|preventDefault={createArticle}>
     <input type="text" placeholder="Titre" bind:value={article.title} required>
     <input type="text" placeholder="Description" bind:value={article.description}>
@@ -138,3 +146,9 @@
 </div>
 {/each}
 </div>
+{#if modalIsOpen == true && isNew == true}
+<ModalAdd/>
+{/if}
+{#if modalIsOpen == true && isNew == false}
+<ModalEdit updatedArticle={updatedArticle} categories={categories}/>
+{/if}
