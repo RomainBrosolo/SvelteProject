@@ -27,20 +27,16 @@
             <span class="text">
                 <textarea name="note" placeholder="Ecrire votre note..." bind:value={updatedArticle.description}></textarea>
             </span>
-            <h3 class="modal-h3">Ajouter les mots-clefs:</h3>
+            <h3 class="modal-h3">Modifier mots-clefs:</h3>
             <span class="text text-small">
                 <input name="keywords" placeholder="Ecrire les mots clefs séparés par une vigurle" bind:value={updatedArticle.mots_clefs} />
             </span>
-            <h3 class="modal-h3">Ajouter des catégories:</h3>
+            <h3 class="modal-h3">Modifier catégories:</h3>
             <div class="categories" >
                 <input name="categories" placeholder="Ecrire les categories séparés par une vigurle" bind:value={updatedArticle.categories} />
-                <!-- {#each categories as item}
-                    <input type="checkbox" name="category" value={item} >
-                    <span>{item}</span>
-                {/each} -->
             </div>
             <div class="modal-foot">
-                <button class="button button-large" type="reset" >Annuler</button>
+                <button class="button button-large" type="reset" on:click={() => closeModal()} >Annuler</button>
                 <button type="submit" class="button button-large">Ajouter</button>
             </div>
        </div>

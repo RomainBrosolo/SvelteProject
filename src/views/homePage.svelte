@@ -1,7 +1,13 @@
 <script>
-	import ListArticles from '../components/newListArticles.svelte';
+	import ListArticles from '../components/ListArticles.svelte';
+	import Details from '../views/articleDetails.svelte';
+	import Router, {location, link} from 'svelte-spa-router';
 </script>
 
 
  
-<ListArticles/>
+
+<Router routes={{
+	'/': ListArticles,
+	'/article/:id': Details,
+}} />

@@ -62,7 +62,7 @@ $: localStorage.setItem("categories", JSON.stringify(categories))
                 <input type="text" placeholder="Ecrire les catégories séparés par une vigurle" bind:value={article.categories}>
             </span>
             <div class="modal-foot">
-                <button type="reset" class="button button-large">Annuler</button>
+                <button type="reset" class="button button-large" on:click={() => closeModal()}>Annuler</button>
                 <button type="submit" class="button button-large">Ajouter</button>
             </div>
         </div>

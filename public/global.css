@@ -277,9 +277,16 @@ nav .keywords li{
 .search-input input{
     position: absolute;
     height: 100%;
-    width: 100%;
+    width: 74%;
     border: none;
-    padding: 15px;
+    padding: 0 15px;
+    top: 0;
+    left: 0;
+}
+
+.search-input input:focus{
+    border: none;
+    outline: none;
 }
 
 .search-input img{
@@ -394,7 +401,7 @@ nav .keywords li{
     height: 30px;
     width: 30px;
     position: fixed;
-    top: 80px;
+    top: 10%;
     right: 23%;
     display: flex;
     align-items: center;
