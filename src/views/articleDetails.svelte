@@ -6,7 +6,7 @@ if(localStorage.getItem("articles")){
     listArticles = JSON.parse(localStorage.getItem("articles"));
 }
 
- const item = listArticles.find((data) => data.id = params.id);
+ const item = listArticles.find((data) => data.id == params.id);
 
 </script>
 <nav>
